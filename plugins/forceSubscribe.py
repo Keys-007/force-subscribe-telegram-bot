@@ -25,15 +25,15 @@ def _onUnMuteRequest(client, cb):
             if cb.message.reply_to_message.from_user.id == user_id:
               cb.message.delete()
           except UserNotParticipant:
-            client.answer_callback_query(cb.id, text="❗ Join the mentioned 'channel' and press the 'UnMute Me' button again.", show_alert=True)
+            client.answer_callback_query(cb.id, text="❗ Join the mentioned 'channel' and press the 'UnMute Me' button again ❗.", show_alert=True)
       else:
-        client.answer_callback_query(cb.id, text="❗ You are muted by admins for other reasons.", show_alert=True)
+        client.answer_callback_query(cb.id, text="❗ You are muted by admins for other reasons❗.", show_alert=True)
     else:
       if not client.get_chat_member(chat_id, (client.get_me()).id).status == 'administrator':
-        client.send_message(chat_id, f"❗ **{cb.from_user.mention} is trying to UnMute himself but i can't unmute him because i am not an admin in this chat add me as admin again.**\n__#Leaving this chat...__")
+        client.send_message(chat_id, f"❗ **{cb.from_user.mention} is trying to UnMute himself but i can't unmute him because i am not an admin in this chat add me as admin again.**\n__#Leaving this chat...🚶🏻‍♂️__")
         client.leave_chat(chat_id)
       else:
-        client.answer_callback_query(cb.id, text="❗ Warning: Don't click the button if you can speak freely.", show_alert=True)
+        client.answer_callback_query(cb.id, text="❗ Warning: Don't click the button if you can speak freely❗.", show_alert=True)
 
 
 
@@ -58,10 +58,10 @@ def _check_member(client, message):
           )
           client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))
         except ChatAdminRequired:
-          sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission and add me again.\n#Leaving this chat...__")
+          sent_message.edit("❗ **I am not an admin here ❗.**\n__Make me admin with ban user permission and add me again.\n#Leaving this chat...🚶🏻‍♂️__")
           client.leave_chat(chat_id)
       except ChatAdminRequired:
-        client.send_message(chat_id, text=f"❗ **I am not an admin in @{channel}**\n__Make me admin in the channel and add me again.\n#Leaving this chat...__")
+        client.send_message(chat_id, text=f"❗ **I am not an admin in @{channel}**\n__Make me admin in the channel and add me again.\n#Leaving this chat...🚶🏻‍♂️__")
         client.leave_chat(chat_id)
 
 
@@ -75,7 +75,7 @@ def config(client, message):
       input_str = input_str.replace("@", "")
       if input_str.lower() in ("off", "no", "disable"):
         sql.disapprove(chat_id)
-        message.reply_text("❌ **Force Subscribe is Disabled Successfully.**")
+        message.reply_text("❌ **Force Subscribe is Disabled Successfully.** ❌")
       elif input_str.lower() in ('clear'):
         sent_message = message.reply_text('**Unmuting all members who are muted by me...**')
         try:
@@ -83,7 +83,7 @@ def config(client, message):
             if chat_member.restricted_by.id == (client.get_me()).id:
                 client.unban_chat_member(chat_id, chat_member.user.id)
                 time.sleep(1)
-          sent_message.edit('✅ **UnMuted all members who are muted by me.**')
+          sent_message.edit('✅ **UnMuted all members who are muted by me.**✅')
         except ChatAdminRequired:
           sent_message.edit('❗ **I am not an admin in this chat.**\n__I can\'t unmute members because i am not an admin in this chat make me admin with ban user permission.__')
       else:
